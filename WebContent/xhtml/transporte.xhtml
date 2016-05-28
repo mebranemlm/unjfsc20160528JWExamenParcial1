@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+<title>
+<h:outputText value="Registrar Transporte" rendered="#{!TransporteBean.accion_modificar}"></h:outputText>
+<h:outputText value="Modificar Transporte" rendered="#{TransporteBean.accion_modificar}"></h:outputText>
+</title>
+</h:head>
+<h:body>
+<h1>
+<h:outputText value="Registrar Transporte" rendered="#{!TransporteBean.accion_modificar}"></h:outputText>
+<h:outputText value="Modificar Transporte" rendered="#{TransporteBean.accion_modificar}"></h:outputText>
+</h1>
+<h:form>
+<table>
+	<tr>
+		<th>Id Transporte</th>
+		<td>
+			<h:inputText value="#{TransporteBean.idTransporte}"></h:inputText>
+		</td>
+	</tr>
+	<tr>
+		<th>Id Tipo Transporte</th>
+		<td>
+			<h:inputText value="#{TransporteBean.idTipoTransporte}"></h:inputText>
+		</td>
+	</tr>
+	<tr>
+		<th>Desc Transporte</th>
+		<td>
+			<h:inputText value="#{TransporteBean.descTransporte}"></h:inputText>
+		</td>
+	</tr>
+	<tr>
+		<th>Costo</th>
+		<td>
+			<h:inputText value="#{TransporteBean.costo}"></h:inputText>
+		</td>
+	</tr>
+	<tr>
+		<th>Stock</th>
+		<td>
+			<h:inputText value="#{TransporteBean.stock}"></h:inputText>
+		</td>
+	</tr>
+	<tr>
+		<th>Modelo</th>
+		<td>
+			<h:inputText value="#{TransporteBean.idModelo}"></h:inputText>
+		</td>
+	</tr>
+	<tr>
+		<th>Marca</th>
+		<td>
+			<h:inputText value="#{TransporteBean.idMarca}"></h:inputText>
+		</td>
+	</tr>
+	<tr>
+		<th>Fecha Registro</th>
+		<td>
+			<p:calendar value="#{TransporteBean.fechaRegistro}" mode="popup"
+						popupIconOnly="true" showOn="button" pattern="dd/MM/yyyy">
+			</p:calendar>
+		</td>
+	</tr>
+	<tr align="center">
+		<td colspan="2">
+			<p:commandButton value="Agregar"
+				actionListener="#{TransporteBean.agregarTransporte}" action="PRINCIPAL"
+				rendered="#{!TransporteBean.accion_modificar}" icon="ui-icon-disk" />
+			<p:commandButton value="Modificar"
+				actionListener="#{TransporteBean.modificarTransporte}" action="PRINCIPAL"
+				rendered="#{TransporteBean.accion_modificar}" />
+		</td>
+	</tr>
+</table>
+</h:form>
+<h:form>
+<h:commandLink value="Regresar al Inicio" action="PRINCIPAL"></h:commandLink>
+</h:form>
+</h:body>
+</html>

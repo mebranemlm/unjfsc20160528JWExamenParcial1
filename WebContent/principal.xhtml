@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Principal</title>
+</h:head>
+<h:body>
+<h1>Menú Principal</h1>
+<h:form>
+<table>
+
+<tr>
+	<th>Transporte</th>
+</tr>
+<tr>
+	<td>
+		<h:commandLink value="Ingresar" actionListener="#{TransporteBean.accion_agrega}" action="TRANSPORTE"></h:commandLink>
+	</td>
+</tr>
+
+<tr>
+	<td>
+		<h:commandLink value="Editar" actionListener="#{TransporteBean.accion_modifica}" action="TRANSPORTE"></h:commandLink>
+	</td>
+</tr>
+<tr>
+	<td>
+		<h:commandLink value="Eliminar" action="TRANSPORTE_ELIMINAR"></h:commandLink>
+	</td>
+</tr>
+<tr>
+	<td>
+		<h:commandLink value="Buscar"  action="TRANSPORTE_BUSCAR"></h:commandLink>
+	</td>
+</tr>
+
+
+
+</table>
+</h:form>
+</h:body>
+</html>

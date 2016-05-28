@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Buscar Transporte</title>
+</h:head>
+<h:body>
+<h1>Buscar Transporte</h1>
+
+<h:form>
+<table border="2" align="center">
+<tr align="center"><td colspan="3"><b><h:outputText value="Busqueda de Transporte" color="red"/></b></td>
+</tr>
+<tr>
+	<td>
+		<b><h:outputText value="Ingresar ID Transporte:"/></b>
+	</td>
+	<td>
+		<h:inputText value="#{TransporteBean.idTransporte}"/>
+	</td>
+	<td>
+		<h:commandButton value="Buscar" actionListener="#{TransporteBean.buscarlistaTransportes}" action="TRANSPORTE_BUSCAR"/>
+	</td>
+</tr>
+<tr align="center">
+	<td colspan="3">
+		<p:dataTable rows="2" var="listaCargada" value="#{TransporteBean.listaTransportes}" border="2" paginator="true">
+			<f:facet name="header">
+				<h:outputText value="Lista de Transportes"/>
+			</f:facet>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Transporte"/>
+			</f:facet>
+			<h:outputText value="#{listaCargada.Transporte}"></h:outputText>
+		</p:column>
+		<p:column>
+		<f:facet name="header">
+			<h:outputText value="idTipoTransporte"/>
+		</f:facet>
+		<h:outputText value="#{listaCargada.idTipoTransporte}"></h:outputText>
+		</p:column>
+		<p:column>
+			<f:facet name="header"><h:outputText value="Desc Tipo Transporte"/></f:facet>
+			<h:outputText value="#{listaCargada.descTipoTransporte}"></h:outputText>
+		</p:column>
+		
+		<f:facet name="footer">
+			<h:outputText value="Existen #{TransporteBean.tamano_lista} registros"/>
+		</f:facet>
+	</p:dataTable>
+</td>
+</tr>
+</table>
+</h:form>
+</h:body>
+</html>
