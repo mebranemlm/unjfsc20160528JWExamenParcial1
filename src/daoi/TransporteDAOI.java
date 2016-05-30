@@ -110,16 +110,28 @@ public class TransporteDAOI implements TransporteDAOL {
 		try 
 		{
 			
+			int idMarca=obj.getIdMarca();
+			Query q1;
+			String descTransporte='%'+ obj.getDescTransporte().toLowerCase()+'%';
+			String sql1="select tr from Transporte tr where lower(tr.descTransporte) like :p1";
+			if(idMarca>0){
+				sql1=sql1+" and tr.idMarca = :p2";
+				q1=cn.em.createQuery(sql1);
+				q1.setParameter("p1",descTransporte);
+				q1.setParameter("p2",idMarca);
+			}else{
+				q1=cn.em.createQuery(sql1);
+				q1.setParameter("p1",descTransporte);
+			}
 			
-			String sql1="select tr from Transporte tr where lower(tr.descTransporte) like :p1 and tr.idMarca = :p2";
+			
+			System.out.println("ID de la Marca: "+idMarca);
 			//String sql2="select tr, tt.descTipoTransporte, mo.descModelo, tm.descTipoModelo, ma.descMarca from Transporte tr inner join TipoTransporte tt on lower(tr.descTransporte) like :p1 tr.idTipoTransporte=tt.idTipoTransporte inner join Modelo mo on tr.idModelo=mo.idModelo inner join TipoModelo tm on mo.idTipoModelo=tm.idTipoModelo inner join Marca ma on tr.idMarca=ma.idMarca order by 1";
 			//String sql3="select tr, tt , mo , tm , ma from Transporte tr inner join TipoTransporte tt on lower(tr.descTransporte) like :p1 tr.idTipoTransporte=tt.idTipoTransporte inner join Modelo mo on tr.idModelo=mo.idModelo inner join TipoModelo tm on mo.idTipoModelo=tm.idTipoModelo inner join Marca ma on tr.idMarca=ma.idMarca order by 1";
 
-			Query q1=cn.em.createQuery(sql1);
-			q1.setParameter("p1",'%'+ obj.getDescTransporte().toLowerCase()+'%');
-			int idMarca=obj.getIdMarca();
-			System.out.println("ID de la Marca: "+idMarca);
-			q1.setParameter("p2",obj.getIdMarca());
+			
+			
+			
 			lista1=q1.getResultList();
 			
 		} catch (Exception e) {

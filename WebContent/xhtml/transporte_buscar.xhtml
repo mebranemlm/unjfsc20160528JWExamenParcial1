@@ -26,7 +26,7 @@
 	</td>
 	<td>
 		<h:selectOneMenu value="#{TransporteBean.idMarca}" var="cboMarcas" class="ui-selectonemenu-label ui-inputfield ui-corner-all">
-			<f:selectItem itemValue="-1" itemLabel="-Seleccionar Marca-" />
+			<f:selectItem itemValue="-1" itemLabel="-Todas las Marcas-" />
 
             <f:selectItems value="#{TransporteBean.listaMarcas}" var="marcas" itemValue="#{marcas.idMarca}" itemLabel="#{marcas.descMarca}"  />
 
