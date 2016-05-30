@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import daoi.TransporteDAOI;
+import model.Marca;
 import model.Transporte;
 
 
@@ -20,8 +21,10 @@ public class TransporteBean {
 	
 	public TransporteDAOI trdaoi= new TransporteDAOI();
 	private List<Transporte> listaTransportes;
+	private List<Marca> listaMarcas;
 	private int tamano_lista;
 	private boolean accion_modificar;
+	private Marca marca;
 	
 	Transporte obj=new Transporte();
 	
@@ -78,15 +81,39 @@ public class TransporteBean {
 	
 	public void buscarlistaTransportes() throws Exception
 	{
-		Transporte objusu=new Transporte();
-		objusu.setIdTransporte(getIdTransporte());
-		objusu=trdaoi.buscarTransporte(objusu);
-		listaTransportes=trdaoi.buscarListaTransporte(objusu);
+		Transporte objt=new Transporte();
+		int idTransporte=getIdTransporte();
+		System.out.println("idTransporte: "+idTransporte);
+		objt.setIdTransporte(idTransporte);
+		objt=trdaoi.buscarTransporte(objt);
+		listaTransportes=trdaoi.buscarListaTransporte(objt);
 		tamano_lista=listaTransportes.size();
 	}
 	
+	public void buscarListaPorNombres()throws Exception{
 	
+		Transporte objt=new Transporte();
+		String descTransporte=getDescTransporte();
+		System.out.println("DescTransporte: "+descTransporte);
+		objt.setDescTransporte(descTransporte);
+		objt.setIdMarca(getIdMarca());
+		//objt=trdaoi.buscarListaPorNombre(objt);
+		listaTransportes=trdaoi.buscarListaTransporte(objt);
+		tamano_lista=listaTransportes.size();
+	}
 	
+	public void listarMarcas()throws Exception{
+		System.out.println("Llegó a la función listar Marcas del Bean.");
+		listaMarcas=trdaoi.listarMarcas();
+		
+		System.out.println("Se han encontrado "+listaMarcas.size()+ " marcas.");
+		for (int i = 0; i < listaMarcas.size(); i++) {
+			int id=listaMarcas.get(i).getIdMarca();
+			String desc=listaMarcas.get(i).getDescMarca();
+			System.out.println("Codigo: "+id + "\t Desc: "+desc);
+		}
+		
+	}
 	
 
 	public int getIdTransporte() {
@@ -192,6 +219,22 @@ public class TransporteBean {
 
 	public void setObj(Transporte obj) {
 		this.obj = obj;
+	}
+
+	public List<Marca> getListaMarcas() {
+		return listaMarcas;
+	}
+
+	public void setListaMarcas(List<Marca> listaMarcas) {
+		this.listaMarcas = listaMarcas;
+	}
+
+	public Marca getMarca() {
+		return marca;
+	}
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
 	}
 
 

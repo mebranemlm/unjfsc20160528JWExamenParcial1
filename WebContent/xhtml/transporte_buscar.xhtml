@@ -15,49 +15,82 @@
 
 <h:form>
 <table border="2" align="center">
-<tr align="center"><td colspan="3"><b><h:outputText value="Busqueda de Transporte" color="red"/></b></td>
+<tr align="center"><td colspan="4"><b><h:outputText value="Busqueda de Transporte" color="red"/></b></td>
 </tr>
 <tr>
 	<td>
-		<b><h:outputText value="Ingresar ID Transporte:"/></b>
+		<b><h:outputText value="Ingresar Desc Transporte:"/></b>
 	</td>
 	<td>
-		<h:inputText value="#{TransporteBean.idTransporte}"/>
+		<h:inputText value="#{TransporteBean.descTransporte}"/>
 	</td>
 	<td>
-		<h:commandButton value="Buscar" actionListener="#{TransporteBean.buscarlistaTransportes}" action="TRANSPORTE_BUSCAR"/>
+		<h:selectOneMenu value="#{TransporteBean.idMarca}" var="cboMarcas" class="ui-selectonemenu-label ui-inputfield ui-corner-all">
+			<f:selectItem itemValue="-1" itemLabel="-Seleccionar Marca-" />
+
+            <f:selectItems value="#{TransporteBean.listaMarcas}" var="marcas" itemValue="#{marcas.idMarca}" itemLabel="#{marcas.descMarca}"  />
+
+		</h:selectOneMenu>
+	</td>
+	<td>
+		<h:commandButton value="Buscar" actionListener="#{TransporteBean.buscarListaPorNombres}" action="TRANSPORTE_BUSCAR"/>
 	</td>
 </tr>
 <tr align="center">
-	<td colspan="3">
-		<p:dataTable rows="2" var="listaCargada" value="#{TransporteBean.listaTransportes}" border="2" paginator="true">
+	<td colspan="4">
+		<p:dataTable rows="5" var="listaCargada" value="#{TransporteBean.listaTransportes}" border="2" paginator="true">
 			<f:facet name="header">
 				<h:outputText value="Lista de Transportes"/>
 			</f:facet>
-		<p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="id"/>
+				</f:facet>
+				<h:outputText value="#{listaCargada.idTransporte}"></h:outputText>
+			</p:column>
+			<p:column>
 			<f:facet name="header">
-				<h:outputText value="Transporte"/>
+				<h:outputText value="idTipoTransporte"/>
 			</f:facet>
-			<h:outputText value="#{listaCargada.Transporte}"></h:outputText>
-		</p:column>
-		<p:column>
-		<f:facet name="header">
-			<h:outputText value="idTipoTransporte"/>
-		</f:facet>
-		<h:outputText value="#{listaCargada.idTipoTransporte}"></h:outputText>
-		</p:column>
-		<p:column>
-			<f:facet name="header"><h:outputText value="Desc Tipo Transporte"/></f:facet>
-			<h:outputText value="#{listaCargada.descTipoTransporte}"></h:outputText>
-		</p:column>
+			<h:outputText value="#{listaCargada.idTipoTransporte}"></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header"><h:outputText value="Desc Transporte"/></f:facet>
+				<h:outputText value="#{listaCargada.descTransporte}"></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header"><h:outputText value="Costo"/></f:facet>
+				<h:outputText value="#{listaCargada.costo}"></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header"><h:outputText value="Stock"/></f:facet>
+				<h:outputText value="#{listaCargada.stock}"></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header"><h:outputText value="ID Modelo"/></f:facet>
+				<h:outputText value="#{listaCargada.idModelo}"></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header"><h:outputText value="ID Marca"/></f:facet>
+				<h:outputText value="#{listaCargada.idMarca}"></h:outputText>
+			</p:column>
 		
-		<f:facet name="footer">
-			<h:outputText value="Existen #{TransporteBean.tamano_lista} registros"/>
-		</f:facet>
+			<f:facet name="footer">
+				<h:outputText value="Existen #{TransporteBean.tamano_lista} registros"/>
+			</f:facet>
 	</p:dataTable>
 </td>
 </tr>
 </table>
 </h:form>
+
+<script src="js/funciones.js"></script>
+<script src="../js/funciones.js"></script>
+
 </h:body>
 </html>

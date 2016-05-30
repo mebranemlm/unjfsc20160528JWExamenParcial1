@@ -6,6 +6,7 @@ import javax.persistence.Query;
 import javax.swing.JOptionPane;
 
 import util.Conn;
+import model.Marca;
 import model.TipoTransporte;
 import model.Transporte;
 import daol.TransporteDAOL;
@@ -19,12 +20,15 @@ public class TransporteDAOI implements TransporteDAOL {
 		Transporte objt=new Transporte();
 		try 
 		{
-			obj=cn.em.find(Transporte.class, objt.getIdTransporte());
+			objt=cn.em.find(Transporte.class, obj.getIdTransporte());
+			System.out.println("Objeto: "+objt);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return obj;
+		return objt;
 	}
+	
+
 
 	@Override
 	public void agregarTransporte(Transporte obj) throws Exception {
@@ -105,8 +109,17 @@ public class TransporteDAOI implements TransporteDAOL {
 		List<Transporte>lista1=null;
 		try 
 		{
-			Query q1=cn.em.createQuery("select tr from Transporte tr where tr.idTransporte=:p1");
-			q1.setParameter("p1", obj.getIdTransporte());
+			
+			
+			String sql1="select tr from Transporte tr where lower(tr.descTransporte) like :p1 and tr.idMarca = :p2";
+			//String sql2="select tr, tt.descTipoTransporte, mo.descModelo, tm.descTipoModelo, ma.descMarca from Transporte tr inner join TipoTransporte tt on lower(tr.descTransporte) like :p1 tr.idTipoTransporte=tt.idTipoTransporte inner join Modelo mo on tr.idModelo=mo.idModelo inner join TipoModelo tm on mo.idTipoModelo=tm.idTipoModelo inner join Marca ma on tr.idMarca=ma.idMarca order by 1";
+			//String sql3="select tr, tt , mo , tm , ma from Transporte tr inner join TipoTransporte tt on lower(tr.descTransporte) like :p1 tr.idTipoTransporte=tt.idTipoTransporte inner join Modelo mo on tr.idModelo=mo.idModelo inner join TipoModelo tm on mo.idTipoModelo=tm.idTipoModelo inner join Marca ma on tr.idMarca=ma.idMarca order by 1";
+
+			Query q1=cn.em.createQuery(sql1);
+			q1.setParameter("p1",'%'+ obj.getDescTransporte().toLowerCase()+'%');
+			int idMarca=obj.getIdMarca();
+			System.out.println("ID de la Marca: "+idMarca);
+			q1.setParameter("p2",obj.getIdMarca());
 			lista1=q1.getResultList();
 			
 		} catch (Exception e) {
@@ -115,6 +128,38 @@ public class TransporteDAOI implements TransporteDAOL {
 		return lista1;
 	}
 	
+	@Override
+	public List<Marca> listarMarcas() throws Exception {
+		cn.open();
+		List<Marca>lista1=null;
+		try 
+		{
+			Query q1=cn.em.createQuery("select m from Marca m");
+			//q1.setParameter("p1",'%'+ obj.getDesc().toLowerCase()+'%');
+			lista1=q1.getResultList();
+			
+			
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		return lista1;
+	}
 	
+	@Override
+	public List<Transporte> buscarListaPorNombre(Transporte obj) throws Exception {
+		cn.open();
+		List<Transporte>lista1=null;
+		try 
+		{
+			Query q1=cn.em.createQuery("select tr from Transporte tr where tr.descTransporte=:p1");
+			q1.setParameter("p1", obj.getDescTransporte());
+			lista1=q1.getResultList();
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		return lista1;
+	}
 
 }
