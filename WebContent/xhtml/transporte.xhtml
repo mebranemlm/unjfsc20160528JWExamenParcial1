@@ -15,11 +15,13 @@
 </title>
 </h:head>
 <h:body>
+<center>
 <h1>
 <h:outputText value="Registrar Transporte" rendered="#{!TransporteBean.sw_edit}"></h:outputText>
 <h:outputText value="Modificar Transporte" rendered="#{TransporteBean.sw_edit}"></h:outputText>
 </h1>
 <h:form>
+
 <table>
 	<tr>
 		<th>Id Transporte</th>
@@ -28,9 +30,12 @@
 		</td>
 	</tr>
 	<tr>
-		<th>Id Tipo Transporte</th>
+		<th>Tipo Transporte</th>
 		<td>
-			<h:inputText value="#{TransporteBean.tipoTransporte.idTipoTransporte}"></h:inputText>
+			<h:selectOneMenu value="#{TransporteBean.tipoTransporte.idTipoTransporte}" var="cboTipoTransporte" class="ui-selectonemenu-label ui-inputfield ui-corner-all">
+				<f:selectItem itemValue="-1" itemLabel="-Seleccionar-" />
+            	<f:selectItems value="#{TransporteBean.listTipoTransporte}" var="tiposTransporte" itemValue="#{tiposTransporte.idTipoTransporte}" itemLabel="#{tiposTransporte.descTipoTransporte}"  />
+			</h:selectOneMenu>
 		</td>
 	</tr>
 	<tr>
@@ -54,13 +59,19 @@
 	<tr>
 		<th>Modelo</th>
 		<td>
-			<h:inputText value="#{TransporteBean.modelo.idModelo}"></h:inputText>
+			<h:selectOneMenu value="#{TransporteBean.modelo.idModelo}" var="cboModelo" class="ui-selectonemenu-label ui-inputfield ui-corner-all">
+				<f:selectItem itemValue="-1" itemLabel="-Seleccionar-" />
+            	<f:selectItems value="#{TransporteBean.listModelo}" var="modelos" itemValue="#{modelos.idModelo}" itemLabel="#{modelos.descModelo}"  />
+			</h:selectOneMenu>
 		</td>
 	</tr>
 	<tr>
 		<th>Marca</th>
 		<td>
-			<h:inputText value="#{TransporteBean.marca.idMarca}"></h:inputText>
+			<h:selectOneMenu value="#{TransporteBean.marca.idMarca}" var="cboMarca" class="ui-selectonemenu-label ui-inputfield ui-corner-all">
+				<f:selectItem itemValue="-1" itemLabel="-Seleccionar-" />
+            	<f:selectItems value="#{TransporteBean.listMarca}" var="marcas" itemValue="#{marcas.idMarca}" itemLabel="#{marcas.descMarca}"  />
+			</h:selectOneMenu>
 		</td>
 	</tr>
 	<tr>
@@ -82,9 +93,12 @@
 		</td>
 	</tr>
 </table>
+
 </h:form>
 <h:form>
 <h:commandLink value="Regresar al Inicio" action="PRINCIPAL"></h:commandLink>
+
 </h:form>
+</center>
 </h:body>
 </html>
