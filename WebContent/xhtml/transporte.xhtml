@@ -10,14 +10,14 @@
 
 <h:head>
 <title>
-<h:outputText value="Registrar Transporte" rendered="#{!TransporteBean.accion_modificar}"></h:outputText>
-<h:outputText value="Modificar Transporte" rendered="#{TransporteBean.accion_modificar}"></h:outputText>
+<h:outputText value="Registrar Transporte" rendered="#{!TransporteBean.sw_edit}"></h:outputText>
+<h:outputText value="Modificar Transporte" rendered="#{TransporteBean.sw_edit}"></h:outputText>
 </title>
 </h:head>
 <h:body>
 <h1>
-<h:outputText value="Registrar Transporte" rendered="#{!TransporteBean.accion_modificar}"></h:outputText>
-<h:outputText value="Modificar Transporte" rendered="#{TransporteBean.accion_modificar}"></h:outputText>
+<h:outputText value="Registrar Transporte" rendered="#{!TransporteBean.sw_edit}"></h:outputText>
+<h:outputText value="Modificar Transporte" rendered="#{TransporteBean.sw_edit}"></h:outputText>
 </h1>
 <h:form>
 <table>
@@ -30,7 +30,7 @@
 	<tr>
 		<th>Id Tipo Transporte</th>
 		<td>
-			<h:inputText value="#{TransporteBean.idTipoTransporte}"></h:inputText>
+			<h:inputText value="#{TransporteBean.tipoTransporte.idTipoTransporte}"></h:inputText>
 		</td>
 	</tr>
 	<tr>
@@ -54,13 +54,13 @@
 	<tr>
 		<th>Modelo</th>
 		<td>
-			<h:inputText value="#{TransporteBean.idModelo}"></h:inputText>
+			<h:inputText value="#{TransporteBean.modelo.idModelo}"></h:inputText>
 		</td>
 	</tr>
 	<tr>
 		<th>Marca</th>
 		<td>
-			<h:inputText value="#{TransporteBean.idMarca}"></h:inputText>
+			<h:inputText value="#{TransporteBean.marca.idMarca}"></h:inputText>
 		</td>
 	</tr>
 	<tr>
@@ -74,11 +74,11 @@
 	<tr align="center">
 		<td colspan="2">
 			<p:commandButton value="Agregar"
-				actionListener="#{TransporteBean.agregarTransporte}" action="PRINCIPAL"
-				rendered="#{!TransporteBean.accion_modificar}" icon="ui-icon-disk" />
+				actionListener="#{TransporteBean.create}" action="PRINCIPAL"
+				rendered="#{!TransporteBean.sw_edit}" icon="ui-icon-disk" />
 			<p:commandButton value="Modificar"
-				actionListener="#{TransporteBean.modificarTransporte}" action="PRINCIPAL"
-				rendered="#{TransporteBean.accion_modificar}" />
+				actionListener="#{TransporteBean.update}" action="PRINCIPAL"
+				rendered="#{TransporteBean.sw_edit}" />
 		</td>
 	</tr>
 </table>

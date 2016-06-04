@@ -18,10 +18,10 @@ public class Transporte {
 	private int idTransporte;
 	
 	
-//	@ManyToOne
-//	@JoinColumn(name="idTipoTransporte")
-//	private TipoTransporte tblTipoTransporte;
-	private int idTipoTransporte;
+	@ManyToOne
+	@JoinColumn(name="idTipoTransporte")
+	private TipoTransporte TipoTransporte;
+//	private int idTipoTransporte;
 	
 	private String descTransporte;
 	
@@ -29,17 +29,17 @@ public class Transporte {
 	
 	private int stock;
 	
-//	@ManyToOne
-//	@JoinColumn(name="idModelo")
-//	private Modelo tblModelo;
+	@ManyToOne
+	@JoinColumn(name="idModelo")
+	private Modelo Modelo;
 	
-	private int idModelo;
+//	private int idModelo;
 	
-//	@ManyToOne
-//	@JoinColumn(name="idMarca")
-//	private Marca tblMarca;
+	@ManyToOne
+	@JoinColumn(name="idMarca")
+	private Marca Marca;
 	
-	private int idMarca;
+	//private int idMarca;
 	
 	@Temporal(TemporalType.DATE)
 	private Date fechaRegistro;
@@ -84,22 +84,6 @@ public class Transporte {
 		this.stock = stock;
 	}
 
-//	public Modelo getTblModelo() {
-//		return tblModelo;
-//	}
-//
-//	public void setTblModelo(Modelo tblModelo) {
-//		this.tblModelo = tblModelo;
-//	}
-//
-//	public Marca getTblMarca() {
-//		return tblMarca;
-//	}
-//
-//	public void setTblMarca(Marca tblMarca) {
-//		this.tblMarca = tblMarca;
-//	}
-
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
@@ -108,29 +92,31 @@ public class Transporte {
 		this.fechaRegistro = fechaRegistro;
 	}
 
-	public int getIdTipoTransporte() {
-		return idTipoTransporte;
+	public TipoTransporte getTipoTransporte() {
+		return TipoTransporte;
 	}
 
-	public void setIdTipoTransporte(int idTipoTransporte) {
-		this.idTipoTransporte = idTipoTransporte;
+	public void setTipoTransporte(TipoTransporte tipoTransporte) {
+		TipoTransporte = tipoTransporte;
 	}
 
-	public int getIdModelo() {
-		return idModelo;
+	public Modelo getModelo() {
+		return Modelo;
 	}
 
-	public void setIdModelo(int idModelo) {
-		this.idModelo = idModelo;
+	public void setModelo(Modelo modelo) {
+		Modelo = modelo;
 	}
 
-	public int getIdMarca() {
-		return idMarca;
+	public Marca getMarca() {
+		return Marca;
 	}
 
-	public void setIdMarca(int idMarca) {
-		this.idMarca = idMarca;
+	public void setMarca(Marca marca) {
+		Marca = marca;
 	}
+
+	
 	
 	
 }

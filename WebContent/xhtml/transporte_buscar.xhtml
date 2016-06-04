@@ -25,63 +25,58 @@
 		<h:inputText value="#{TransporteBean.descTransporte}"/>
 	</td>
 	<td>
-		<h:selectOneMenu value="#{TransporteBean.idMarca}" var="cboMarcas" class="ui-selectonemenu-label ui-inputfield ui-corner-all">
+		<h:selectOneMenu value="#{TransporteBean.marca.idMarca}" var="cboMarcas" class="ui-selectonemenu-label ui-inputfield ui-corner-all">
 			<f:selectItem itemValue="-1" itemLabel="-Todas las Marcas-" />
 
-            <f:selectItems value="#{TransporteBean.listaMarcas}" var="marcas" itemValue="#{marcas.idMarca}" itemLabel="#{marcas.descMarca}"  />
+            <f:selectItems value="#{MarcaBean.list}" var="marcas" itemValue="#{marcas.idMarca}" itemLabel="#{marcas.descMarca}"  />
 
 		</h:selectOneMenu>
 	</td>
 	<td>
-		<h:commandButton value="Buscar" actionListener="#{TransporteBean.buscarListaPorNombres}" action="TRANSPORTE_BUSCAR"/>
+		<h:commandButton value="Buscar" actionListener="#{TransporteBean.readByParameters}" action="TRANSPORTE_BUSCAR"/>
 	</td>
 </tr>
 <tr align="center">
 	<td colspan="4">
-		<p:dataTable rows="5" var="listaCargada" value="#{TransporteBean.listaTransportes}" border="2" paginator="true">
+		<p:dataTable rows="5" var="transportes" value="#{TransporteBean.list}" border="2" paginator="true">
 			<f:facet name="header">
 				<h:outputText value="Lista de Transportes"/>
 			</f:facet>
+			
 			<p:column>
-				<f:facet name="header">
-					<h:outputText value="id"/>
-				</f:facet>
-				<h:outputText value="#{listaCargada.idTransporte}"></h:outputText>
-			</p:column>
-			<p:column>
-			<f:facet name="header">
-				<h:outputText value="idTipoTransporte"/>
-			</f:facet>
-			<h:outputText value="#{listaCargada.idTipoTransporte}"></h:outputText>
+				<f:facet name="header"><h:outputText value="Descripción"/></f:facet>
+				<h:outputText value="#{transportes.descTransporte} [#{transportes.idTransporte}]"></h:outputText>
 			</p:column>
 			
 			<p:column>
-				<f:facet name="header"><h:outputText value="Desc Transporte"/></f:facet>
-				<h:outputText value="#{listaCargada.descTransporte}"></h:outputText>
+			<f:facet name="header">
+				<h:outputText value="Tipo"/>
+			</f:facet>
+			<h:outputText value="#{transportes.tipoTransporte.descTipoTransporte} [#{transportes.tipoTransporte.idTipoTransporte}]"></h:outputText>
 			</p:column>
 			
 			<p:column>
 				<f:facet name="header"><h:outputText value="Costo"/></f:facet>
-				<h:outputText value="#{listaCargada.costo}"></h:outputText>
+				<h:outputText value="#{transportes.costo}"></h:outputText>
 			</p:column>
 			
 			<p:column>
 				<f:facet name="header"><h:outputText value="Stock"/></f:facet>
-				<h:outputText value="#{listaCargada.stock}"></h:outputText>
+				<h:outputText value="#{transportes.stock}"></h:outputText>
 			</p:column>
 			
 			<p:column>
-				<f:facet name="header"><h:outputText value="ID Modelo"/></f:facet>
-				<h:outputText value="#{listaCargada.idModelo}"></h:outputText>
+				<f:facet name="header"><h:outputText value="Modelo"/></f:facet>
+				<h:outputText value="#{transportes.modelo.descModelo} [#{transportes.modelo.idModelo}]"></h:outputText>
 			</p:column>
 			
 			<p:column>
-				<f:facet name="header"><h:outputText value="ID Marca"/></f:facet>
-				<h:outputText value="#{listaCargada.idMarca}"></h:outputText>
+				<f:facet name="header"><h:outputText value="Marca"/></f:facet>
+				<h:outputText value="#{transportes.marca.descMarca} [#{transportes.marca.idMarca}]"></h:outputText>
 			</p:column>
 		
 			<f:facet name="footer">
-				<h:outputText value="Existen #{TransporteBean.tamano_lista} registros"/>
+				<h:outputText value="Existen #{TransporteBean.list_size} registros"/>
 			</f:facet>
 	</p:dataTable>
 </td>

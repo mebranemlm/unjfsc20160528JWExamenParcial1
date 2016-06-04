@@ -3,117 +3,103 @@ package bean;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import daoi.TransporteDAOI;
 import model.Marca;
 import model.Transporte;
 
 
 public class TransporteBean {
+	
+	public TransporteDAOI oTransporteDAOI= new TransporteDAOI();
+	
 	public int idTransporte;
-	public int idTipoTransporte;
+	public model.TipoTransporte TipoTransporte;
 	public String descTransporte;
 	public double costo;
 	public int stock;
-	public int idModelo;
-	public int idMarca;
+	public model.Modelo Modelo;
+	public model.Marca Marca;
 	public Date fechaRegistro;
 	
-	
-	public TransporteDAOI trdaoi= new TransporteDAOI();
-	private List<Transporte> listaTransportes;
-	private List<Marca> listaMarcas;
-	private int tamano_lista;
-	private boolean accion_modificar;
-	private Marca marca;
+	private List<Transporte> list;
+	private int list_size;
+	private boolean sw_edit;
 	
 	Transporte obj=new Transporte();
 	
-	public boolean accion_agrega(){
-		accion_modificar=false;
-		return accion_modificar;
+	public boolean actionAdd(){
+		sw_edit=false;
+		return sw_edit;
 	}
 	
-	public boolean accion_modifica(){
-		accion_modificar=true;
-		return accion_modificar;
+	public boolean actionEdit(){
+		sw_edit=true;
+		return sw_edit;
 	}
 	
 	
-	public void agregarTransporte() throws Exception {
-		Transporte otr=new Transporte();
-		otr.setIdTransporte(getIdTransporte());
-		otr.setIdTipoTransporte(getIdTipoTransporte());
-		otr.setDescTransporte(getDescTransporte());
-		otr.setCosto(getCosto());
-		otr.setStock(getStock());
-		otr.setIdModelo(getIdModelo());
-		otr.setIdMarca(getIdMarca());
-		otr.setFechaRegistro(getFechaRegistro());
-		trdaoi.agregarTransporte(otr);
+	public void create() throws Exception {
+		Transporte oTransporte=new Transporte();
+		oTransporte.setIdTransporte(getIdTransporte());
+		oTransporte.setTipoTransporte(getTipoTransporte());
+		oTransporte.setDescTransporte(getDescTransporte());
+		oTransporte.setCosto(getCosto());
+		oTransporte.setStock(getStock());
+		oTransporte.setModelo(getModelo());
+		oTransporte.setMarca(getMarca());
+		oTransporte.setFechaRegistro(getFechaRegistro());
+		oTransporteDAOI.create(oTransporte);
+	}
+	
+	public void read() throws Exception
+	{
+
+		List<Transporte> trans=oTransporteDAOI.read();
+		list=trans;
+		list_size=trans.size();
 	}
 
-	public void modificarTransporte() throws Exception {
-		Transporte otr=new Transporte();
-		otr.setIdTransporte(getIdTransporte());
-		otr.setIdTipoTransporte(getIdTipoTransporte());
-		otr.setDescTransporte(getDescTransporte());
-		otr.setCosto(getCosto());
-		otr.setStock(getStock());
-		otr.setIdModelo(getIdModelo());
-		otr.setIdMarca(getIdMarca());
-		otr.setFechaRegistro(getFechaRegistro());
-		trdaoi.editarTransporte(otr);
+
+
+	public void update() throws Exception {
+		Transporte oTransporte=new Transporte();
+		oTransporte.setIdTransporte(getIdTransporte());
+		oTransporte.setTipoTransporte(getTipoTransporte());
+		oTransporte.setDescTransporte(getDescTransporte());
+		oTransporte.setCosto(getCosto());
+		oTransporte.setStock(getStock());
+		oTransporte.setModelo(getModelo());
+		oTransporte.setMarca(getMarca());
+		oTransporte.setFechaRegistro(getFechaRegistro());
+		oTransporteDAOI.update(oTransporte);
 	}
 	
 	
-	public void eliminarTransporte() throws Exception {
-		Transporte otr=new Transporte();
-		otr.setIdTransporte(getIdTransporte());
-//		otr.setIdTipoTransporte(getIdTipoTransporte());
-//		otr.setDescTransporte(getDescTransporte());
-//		otr.setCosto(getCosto());
-//		otr.setStock(getStock());
-//		otr.setIdModelo(getIdModelo());
-//		otr.setIdMarca(getIdMarca());
-//		otr.setFechaRegistro(getFechaRegistro());
-		trdaoi.eliminarTransporte(otr);
+	public void delete() throws Exception {
+		Transporte oTransporte=new Transporte();
+		oTransporte.setIdTransporte(getIdTransporte());
+		oTransporteDAOI.delete(oTransporte);	
 	}
 	
-	public void buscarlistaTransportes() throws Exception
+	public void readByParameters() throws Exception
 	{
-		Transporte objt=new Transporte();
-		int idTransporte=getIdTransporte();
-		System.out.println("idTransporte: "+idTransporte);
-		objt.setIdTransporte(idTransporte);
-		objt=trdaoi.buscarTransporte(objt);
-		listaTransportes=trdaoi.buscarListaTransporte(objt);
-		tamano_lista=listaTransportes.size();
-	}
-	
-	public void buscarListaPorNombres()throws Exception{
-	
-		Transporte objt=new Transporte();
-		String descTransporte=getDescTransporte();
-		System.out.println("DescTransporte: "+descTransporte);
-		objt.setDescTransporte(descTransporte);
-		objt.setIdMarca(getIdMarca());
-		//objt=trdaoi.buscarListaPorNombre(objt);
-		listaTransportes=trdaoi.buscarListaTransporte(objt);
-		tamano_lista=listaTransportes.size();
-	}
-	
-	public void listarMarcas()throws Exception{
-		System.out.println("Llegó a la función listar Marcas del Bean.");
-		listaMarcas=trdaoi.listarMarcas();
+		Transporte oTransporte=new Transporte();
 		
-		System.out.println("Se han encontrado "+listaMarcas.size()+ " marcas.");
-		for (int i = 0; i < listaMarcas.size(); i++) {
-			int id=listaMarcas.get(i).getIdMarca();
-			String desc=listaMarcas.get(i).getDescMarca();
-			System.out.println("Codigo: "+id + "\t Desc: "+desc);
-		}
-		
+		oTransporte.setDescTransporte(getDescTransporte());
+		oTransporte.setMarca(getMarca());
+		list=oTransporteDAOI.readByParameters(oTransporte);
+		//list=oTransporteDAOI.buscarListaTransporte(objt);
+		list_size=list.size();
 	}
+	
+	public void get() throws Exception{
+		Transporte oTransporte=new Transporte();
+		oTransporte.setIdTransporte(getIdTransporte());
+		obj=oTransporteDAOI.get(oTransporte);
+	}
+	
 	
 
 	public int getIdTransporte() {
@@ -157,60 +143,20 @@ public class TransporteBean {
 		this.fechaRegistro = fechaRegistro;
 	}
 
-	public TransporteDAOI getTrdaoi() {
-		return trdaoi;
+	public model.TipoTransporte getTipoTransporte() {
+		return TipoTransporte;
 	}
 
-	public void setTrdaoi(TransporteDAOI trdaoi) {
-		this.trdaoi = trdaoi;
+	public void setTipoTransporte(model.TipoTransporte tipoTransporte) {
+		TipoTransporte = tipoTransporte;
 	}
 
-	public List<Transporte> getListaTransportes() {
-		return listaTransportes;
+	public model.Modelo getModelo() {
+		return Modelo;
 	}
 
-	public void setListaTransportes(List<Transporte> listaTransportes) {
-		this.listaTransportes = listaTransportes;
-	}
-
-	public int getTamano_lista() {
-		return tamano_lista;
-	}
-
-	public void setTamano_lista(int tamano_lista) {
-		this.tamano_lista = tamano_lista;
-	}
-
-	public boolean isAccion_modificar() {
-		return accion_modificar;
-	}
-
-	public void setAccion_modificar(boolean accion_modificar) {
-		this.accion_modificar = accion_modificar;
-	}
-
-	public int getIdTipoTransporte() {
-		return idTipoTransporte;
-	}
-
-	public void setIdTipoTransporte(int idTipoTransporte) {
-		this.idTipoTransporte = idTipoTransporte;
-	}
-
-	public int getIdModelo() {
-		return idModelo;
-	}
-
-	public void setIdModelo(int idModelo) {
-		this.idModelo = idModelo;
-	}
-
-	public int getIdMarca() {
-		return idMarca;
-	}
-
-	public void setIdMarca(int idMarca) {
-		this.idMarca = idMarca;
+	public void setModelo(model.Modelo modelo) {
+		Modelo = modelo;
 	}
 
 	public Transporte getObj() {
@@ -221,20 +167,44 @@ public class TransporteBean {
 		this.obj = obj;
 	}
 
-	public List<Marca> getListaMarcas() {
-		return listaMarcas;
-	}
-
-	public void setListaMarcas(List<Marca> listaMarcas) {
-		this.listaMarcas = listaMarcas;
-	}
-
 	public Marca getMarca() {
-		return marca;
+		return Marca;
 	}
 
 	public void setMarca(Marca marca) {
-		this.marca = marca;
+		Marca = marca;
+	}
+
+	public List<Transporte> getList() {
+		return list;
+	}
+
+	public void setList(List<Transporte> list) {
+		this.list = list;
+	}
+
+	public int getList_size() {
+		return list_size;
+	}
+
+	public void setList_size(int list_size) {
+		this.list_size = list_size;
+	}
+
+	public boolean isSw_edit() {
+		return sw_edit;
+	}
+
+	public void setSw_edit(boolean sw_edit) {
+		this.sw_edit = sw_edit;
+	}
+
+	@PostConstruct
+	public void init() {
+	    TipoTransporte=new model.TipoTransporte();
+	    Modelo = new model.Modelo();
+	    Marca = new Marca();
+	    
 	}
 
 

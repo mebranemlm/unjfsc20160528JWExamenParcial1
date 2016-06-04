@@ -20,13 +20,13 @@
 </tr>
 <tr>
 	<td>
-		<h:commandLink value="Ingresar" actionListener="#{TransporteBean.accion_agrega}" action="TRANSPORTE"></h:commandLink>
+		<h:commandLink value="Ingresar" actionListener="#{TransporteBean.actionAdd}" action="TRANSPORTE"></h:commandLink>
 	</td>
 </tr>
 
 <tr>
 	<td>
-		<h:commandLink value="Editar" actionListener="#{TransporteBean.accion_modifica}" action="TRANSPORTE"></h:commandLink>
+		<h:commandLink value="Editar" actionListener="#{TransporteBean.actionEdit}" action="TRANSPORTE"></h:commandLink>
 	</td>
 </tr>
 <tr>
@@ -36,7 +36,7 @@
 </tr>
 <tr>
 	<td>
-		<h:commandLink value="Buscar"  actionListener="#{TransporteBean.listarMarcas}" action="TRANSPORTE_BUSCAR"></h:commandLink>
+		<h:commandLink value="Buscar"  actionListener="#{MarcaBean.read}" action="TRANSPORTE_BUSCAR"></h:commandLink>
 	</td>
 </tr>
 

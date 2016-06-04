@@ -8,12 +8,14 @@ import model.Transporte;
 public interface TransporteDAOL {
 	
 	//public abstract Transporte validarTransporte(Transporte obj) throws Exception;
-	public abstract Transporte buscarTransporte(Transporte obj) throws Exception;
-	public abstract void agregarTransporte(Transporte obj) throws Exception;
-	public abstract void editarTransporte(Transporte obj) throws Exception;
-	public abstract void eliminarTransporte(Transporte obj) throws Exception;
-	public abstract List<Transporte> buscarListaTransporte(Transporte obj) throws Exception;
-	public abstract List<Transporte> buscarListaPorNombre(Transporte obj) throws Exception;
-	public abstract List<Marca> listarMarcas() throws Exception;
+	public abstract void create(Transporte obj) throws Exception;
+	public abstract List<Transporte> read() throws Exception;
+	public abstract void update(Transporte obj) throws Exception;
+	public abstract void delete(Transporte obj) throws Exception;
+	
+	public abstract Transporte get(Transporte obj) throws Exception;
+	//public abstract List<Transporte> buscarListaTransporte(Transporte obj) throws Exception;
+	public abstract List<Transporte> readByParameters(Transporte obj) throws Exception;
+	
 
 }
