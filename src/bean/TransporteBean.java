@@ -115,7 +115,9 @@ public class TransporteBean {
 	
 	public void delete2(ActionEvent e) throws Exception {
 		Transporte oTransporte=new Transporte();
-		oTransporte.setIdTransporte(Integer.parseInt(e.getComponent().getAttributes().get("attr_idTransporte").toString()));
+		String codigo=e.getComponent().getAttributes().get("attr_idTransporte").toString();
+		System.out.println("Codigo: "+ codigo);
+		oTransporte.setIdTransporte(Integer.parseInt(codigo));
 		oTransporteDAOI.delete(oTransporte);
 		clear();
 	}
@@ -142,7 +144,14 @@ public class TransporteBean {
 		setDescTransporte(null);
 		setFechaRegistro(null);
 		setCosto(0);
-		setMarca(null);
+		setStock(0);
+		
+		model.TipoTransporte tt= new model.TipoTransporte();
+		model.Modelo mo = new model.Modelo();
+		Marca ma = new Marca();
+		setMarca(ma);
+		setTipoTransporte(tt);
+		setModelo(mo);
 	}
 	
 	
