@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.event.ActionEvent;
 
 import daoi.MarcaDAOI;
 import daoi.ModeloDAOI;
@@ -112,6 +113,13 @@ public class TransporteBean {
 		oTransporteDAOI.delete(oTransporte);	
 	}
 	
+	public void delete2(ActionEvent e) throws Exception {
+		Transporte oTransporte=new Transporte();
+		oTransporte.setIdTransporte(Integer.parseInt(e.getComponent().getAttributes().get("attr_idTransporte").toString()));
+		oTransporteDAOI.delete(oTransporte);
+		clear();
+	}
+	
 	public void readByParameters() throws Exception
 	{
 		Transporte oTransporte=new Transporte();
@@ -127,6 +135,14 @@ public class TransporteBean {
 		Transporte oTransporte=new Transporte();
 		oTransporte.setIdTransporte(getIdTransporte());
 		obj=oTransporteDAOI.get(oTransporte);
+	}
+	
+	public void clear(){
+		setIdTransporte(0);
+		setDescTransporte(null);
+		setFechaRegistro(null);
+		setCosto(0);
+		setMarca(null);
 	}
 	
 	
