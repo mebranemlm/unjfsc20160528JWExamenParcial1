@@ -41,6 +41,24 @@ public class TransporteBean {
 	
 	private int list_size;
 	private boolean sw_edit;
+	//JRS
+	private int filaseleccionada;
+	
+	public int getFilaseleccionada() {
+		return filaseleccionada;
+	}
+
+	public void setFilaseleccionada(int filaseleccionada) {
+		this.filaseleccionada = filaseleccionada;
+	}
+
+	public void seleccionfila(ActionEvent e)
+	{
+		String fila=e.getComponent().getAttributes().get("attr_idTransporte").toString();
+		System.out.println(fila);
+		filaseleccionada=Integer.parseInt(fila);
+	}
+	//JRS
 	
 	Transporte obj=new Transporte();
 	
@@ -110,14 +128,15 @@ public class TransporteBean {
 	public void delete() throws Exception {
 		Transporte oTransporte=new Transporte();
 		oTransporte.setIdTransporte(getIdTransporte());
-		oTransporteDAOI.delete(oTransporte);	
+		oTransporteDAOI.delete(oTransporte);
+		clear();
 	}
 	
-	public void delete2(ActionEvent e) throws Exception {
+	public void delete2() throws Exception {
 		Transporte oTransporte=new Transporte();
-		String codigo=e.getComponent().getAttributes().get("attr_idTransporte").toString();
-		System.out.println("Codigo: "+ codigo);
-		oTransporte.setIdTransporte(Integer.parseInt(codigo));
+		//String codigo=e.getComponent().getAttributes().get("attr_idTransporte").toString();
+		System.out.println("Codigo: "+ filaseleccionada);
+		oTransporte.setIdTransporte(filaseleccionada);
 		oTransporteDAOI.delete(oTransporte);
 		clear();
 	}
