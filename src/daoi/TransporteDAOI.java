@@ -95,24 +95,24 @@ public class TransporteDAOI implements TransporteDAOL {
 		//TipoModelo oTipoModelo=new TipoModelo();
 		try 
 		{
-			oTransporte.setIdTransporte(obj.getIdTransporte());
-			
-			oTipoTransporte=cn.em.find(TipoTransporte.class, obj.getTipoTransporte().getIdTipoTransporte());
-			oTransporte.setTipoTransporte(oTipoTransporte);
-			
-			oTransporte.setDescTransporte(obj.getDescTransporte());
-			
-			oTransporte.setCosto(obj.getCosto());
-			
-			oTransporte.setStock(obj.getStock());
-			
-			oModelo=cn.em.find(Modelo.class, obj.getModelo().getIdModelo());
-			oTransporte.setModelo(oModelo);
-			
-			oMarca=cn.em.find(Marca.class, obj.getMarca().getIdMarca());
-			oTransporte.setMarca(oMarca);
-		
-			oTransporte.setFechaRegistro(obj.getFechaRegistro());
+//			oTransporte.setIdTransporte(obj.getIdTransporte());
+//			
+//			oTipoTransporte=cn.em.find(TipoTransporte.class, obj.getTipoTransporte().getIdTipoTransporte());
+//			oTransporte.setTipoTransporte(oTipoTransporte);
+//			
+//			oTransporte.setDescTransporte(obj.getDescTransporte());
+//			
+//			oTransporte.setCosto(obj.getCosto());
+//			
+//			oTransporte.setStock(obj.getStock());
+//			
+//			oModelo=cn.em.find(Modelo.class, obj.getModelo().getIdModelo());
+//			oTransporte.setModelo(oModelo);
+//			
+//			oMarca=cn.em.find(Marca.class, obj.getMarca().getIdMarca());
+//			oTransporte.setMarca(oMarca);
+//		
+//			oTransporte.setFechaRegistro(obj.getFechaRegistro());
 			
 			cn.em.getTransaction().begin();
 			cn.em.merge(obj);

@@ -45,7 +45,7 @@
 			
 			<p:column>
 				<f:facet name="header"><h:outputText value="Descripción"/></f:facet>
-				<h:outputText value="#{transportes.descTransporte} [#{transportes.idTransporte}]"></h:outputText>
+				<h:outputText value="#{transportes.idTransporte}"></h:outputText>
 			</p:column>
 			
 			<p:column>
@@ -88,7 +88,8 @@
 					widgetVar="cd">
 						<p:commandButton 
 							value="SI" 
-							
+							ajax="true"
+							update="formulario1"
 							actionListener="#{TransporteBean.delete2}"
 							onclick="PF('cd').hide();">
 							<f:attribute name="attr_idTransporte" value="#{transportes.idTransporte}">
