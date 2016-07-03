@@ -127,7 +127,7 @@ public class TransporteDAOI implements TransporteDAOL {
 	@Override
 	public void delete(Transporte obj) throws Exception {
 		cn.open();
-		System.out.println("Llegó Aquí---------------");
+		//System.out.println("Llegó Aquí---------------");
 		Transporte oTransporte=new Transporte();
 		try 
 		{

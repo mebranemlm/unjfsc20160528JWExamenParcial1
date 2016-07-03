@@ -4,7 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.validator.ValidatorException;
 
 import daoi.MarcaDAOI;
 import daoi.ModeloDAOI;
@@ -50,6 +54,14 @@ public class TransporteBean {
 
 	public void setFilaseleccionada(int filaseleccionada) {
 		this.filaseleccionada = filaseleccionada;
+	}
+	
+	public void valida1(FacesContext arg0, UIComponent arg1, Object arg2)throws Exception{
+		if(((String)arg2).length()<1){
+			throw new ValidatorException(new FacesMessage("Ingrese un dato"));
+		}else{
+			return;
+		}
 	}
 
 	public void seleccionfila(ActionEvent e)
@@ -135,7 +147,7 @@ public class TransporteBean {
 	public void delete2() throws Exception {
 		Transporte oTransporte=new Transporte();
 		//String codigo=e.getComponent().getAttributes().get("attr_idTransporte").toString();
-		System.out.println("Codigo: "+ filaseleccionada);
+		//System.out.println("Codigo: "+ filaseleccionada);
 		oTransporte.setIdTransporte(filaseleccionada);
 		oTransporteDAOI.delete(oTransporte);
 		clear();
