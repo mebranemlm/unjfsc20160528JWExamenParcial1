@@ -13,7 +13,10 @@
 <h:body>
 <h1>Buscar Transporte</h1>
 
-<h:form >
+
+
+<h:form id="formulario1" >
+ 
 <table border="2" align="center" >
 <tr align="center"><td colspan="4"><b><h:outputText value="Busqueda de Transporte" color="red"/></b></td>
 </tr>
@@ -32,20 +35,20 @@
 
 		</h:selectOneMenu>
 	</td>
-	<td>
-		<h:commandButton value="Buscar" actionListener="#{TransporteBean.readByParameters}" action="TRANSPORTE_BUSCAR"/>
+	<td>	<h:commandButton id="busqueda" value="Buscar" actionListener="#{TransporteBean.readByParameters}" action="TRANSPORTE_BUSCAR"/>
 	</td>
 </tr>
-<tr align="center">
+<tr align="center" id="tr">
 	<td colspan="4">
-		<p:dataTable rows="5" var="transportes" value="#{TransporteBean.list}" border="2" paginator="true" >
+
+		<p:dataTable id="tabla" rows="5" var="transportes" value="#{TransporteBean.list}" border="2" paginator="true" >
 			<f:facet name="header">
 				<h:outputText value="Lista de Transportes"/>
 			</f:facet>
 			
 			<p:column>
 				<f:facet name="header"><h:outputText value="ID"/></f:facet>
-				<h:outputText value="#{transportes.idTransporte}"></h:outputText>
+				<h:outputText value="#{transportes.descTransporte} [#{transportes.idTransporte}]"></h:outputText>
 			</p:column>
 			
 			<p:column>
@@ -84,16 +87,20 @@
 				</p:commandLink>
 				
 				<p:confirmDialog 
+				
 					message="¿Esta seguro de eliminar?" 
 					header="Cuadro de confirmacion" 
 					severity="alert" 
 					widgetVar="cd">					
-						<p:commandButton 
+						<p:commandButton
 							value="SI"
 							actionListener="#{TransporteBean.delete2}"  
-							ajax="true" 
-							update="@form" 
-							onclick="PF('cd').hide();"/>										
+							ajax="true"
+							update="formulario1"
+							onclick="PF('cd').hide();" >
+							</p:commandButton>
+							
+																
 						<p:commandButton 
 							value="NO" 
 							onclick="PF('cd').hide();" 
@@ -106,16 +113,27 @@
 				<h:outputText value="Existen #{TransporteBean.list_size} registros"/>
 			</f:facet>
 	</p:dataTable>
+	
 </td>
 </tr>
 </table>
+
 </h:form>
 
 <h:form>
 <h:commandLink value="Regresar al Inicio" action="PRINCIPAL"></h:commandLink>
 </h:form>
 
-<script src="../js/funciones.js"></script>
+<!-- <script src="../js/funciones.js"></script> -->
+<script type="text/javascript">
+function buscar(q){
+	document.getElementById(q).click();
+}
+
+<!--
+
+//-->
+</script>
 
 </h:body>
 </html>
