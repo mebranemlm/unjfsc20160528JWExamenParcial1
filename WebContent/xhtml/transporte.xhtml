@@ -84,12 +84,12 @@
 	</tr>
 	<tr align="center">
 		<td colspan="2">
-			<p:commandButton update="@form" value="Agregar"
+			<p:commandButton  value="Agregar"
 				actionListener="#{TransporteBean.create}" action="PRINCIPAL"
-				rendered="#{!TransporteBean.sw_edit}" icon="ui-icon-disk" />
-			<p:commandButton update="@form" value="Modificar"
+				rendered="#{!TransporteBean.sw_edit}" icon="ui-icon-disk" onclick="start()" update="@form" />
+			<p:commandButton  value="Modificar"
 				actionListener="#{TransporteBean.update}" action="PRINCIPAL"
-				rendered="#{TransporteBean.sw_edit}" />
+				rendered="#{TransporteBean.sw_edit}"  onclick="start()" update="@form" />
 		</td>
 	</tr>
 	<tr>
@@ -97,9 +97,37 @@
 			<p:messages for="descTransporte"></p:messages>
 		</td>
 	</tr>
+	
+	<tr>
+		<td colspan="2">
+			<p:progressBar widgetVar="pb" />
+		</td>
+	</tr>
 </table>
 
+<p:commandButton id="upd" type="hidden"  update="@form"  style="display:none"></p:commandButton>
+
 </h:form>
+
+<script type="text/javascript">
+function start() {
+this.progressInterval = setInterval(function(){
+		var val=PF('pb').getValue();
+		//console.log(val);
+		if(val>=100){
+			cancel();
+		}else{
+			PF('pb').setValue(val + 50);
+		}
+	}, 2000);
+}
+function cancel() {
+		clearInterval(this.progressInterval);
+		PF('pb').setValue(0);
+}
+</script>
+
+
 <h:form>
 <h:commandLink value="Regresar al Inicio" action="PRINCIPAL"></h:commandLink>
 
