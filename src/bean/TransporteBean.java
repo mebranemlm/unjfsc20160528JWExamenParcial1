@@ -101,6 +101,7 @@ public class TransporteBean {
 	
 	
 	public void create() throws Exception {
+		Thread.sleep(5000);
 		Transporte oTransporte=new Transporte();
 		oTransporte.setIdTransporte(getIdTransporte());
 		oTransporte.setTipoTransporte(getTipoTransporte());
@@ -124,6 +125,7 @@ public class TransporteBean {
 
 
 	public void update() throws Exception {
+		Thread.sleep(5000);
 		Transporte oTransporte=new Transporte();
 		oTransporte.setIdTransporte(getIdTransporte());
 		oTransporte.setTipoTransporte(getTipoTransporte());
@@ -189,6 +191,7 @@ public class TransporteBean {
 	
 	public void validaDescTransporte(FacesContext arg0,UIComponent arg1,Object arg2) throws Exception	
 	{
+		Thread.sleep(5000);
 		if(((String)arg2).length()<1)
 		{
 			throw new ValidatorException(new FacesMessage("Debe ingresar un valor"));			

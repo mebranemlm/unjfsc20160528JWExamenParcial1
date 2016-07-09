@@ -20,7 +20,7 @@
 <h:outputText value="Registrar Transporte" rendered="#{!TransporteBean.sw_edit}"></h:outputText>
 <h:outputText value="Modificar Transporte" rendered="#{TransporteBean.sw_edit}"></h:outputText>
 </h1>
-<h:form>
+<h:form id="formulario1">
 
 <table>
 	<tr>
@@ -86,10 +86,10 @@
 		<td colspan="2">
 			<p:commandButton  value="Agregar"
 				actionListener="#{TransporteBean.create}" action="PRINCIPAL"
-				rendered="#{!TransporteBean.sw_edit}" icon="ui-icon-disk" onclick="start()" update="@form" />
+				rendered="#{!TransporteBean.sw_edit}" icon="ui-icon-disk" onclick="start()" update="formulario1" />
 			<p:commandButton  value="Modificar"
 				actionListener="#{TransporteBean.update}" action="PRINCIPAL"
-				rendered="#{TransporteBean.sw_edit}"  onclick="start()" update="@form" />
+				rendered="#{TransporteBean.sw_edit}"  onclick="start()" update="formulario1" />
 		</td>
 	</tr>
 	<tr>
@@ -105,17 +105,23 @@
 	</tr>
 </table>
 
-<p:commandButton id="upd" type="hidden"  update="@form"  style="display:none"></p:commandButton>
+<!-- <p:commandButton id="upd" type="hidden"  update="@form"  style="display:none"></p:commandButton> -->
 
 </h:form>
 
 <script type="text/javascript">
+var i=0;
+
 function start() {
 this.progressInterval = setInterval(function(){
 		var val=PF('pb').getValue();
-		//console.log(val);
-		if(val>=100){
+		if(val==0){
+			i++;
+		}
+		console.log(val);
+		if(val>=100 || i>1){
 			cancel();
+			i=0;
 		}else{
 			PF('pb').setValue(val + 50);
 		}
