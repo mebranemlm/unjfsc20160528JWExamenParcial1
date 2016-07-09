@@ -141,6 +141,7 @@ public class TransporteBean {
 		Transporte oTransporte=new Transporte();
 		oTransporte.setIdTransporte(getIdTransporte());
 		oTransporteDAOI.delete(oTransporte);
+		
 		clear();
 	}
 	
@@ -150,6 +151,7 @@ public class TransporteBean {
 		//System.out.println("Codigo: "+ filaseleccionada);
 		oTransporte.setIdTransporte(filaseleccionada);
 		oTransporteDAOI.delete(oTransporte);
+		readByParameters();
 		clear();
 	}
 	
