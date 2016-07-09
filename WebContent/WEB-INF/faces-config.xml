@@ -40,6 +40,11 @@
     <to-view-id>/xhtml/transporte_buscar.xhtml</to-view-id>
     </navigation-case>
     
+    <navigation-case>
+    <from-outcome>TEST</from-outcome>
+    <to-view-id>/xhtml/test.xhtml</to-view-id>
+    </navigation-case>
+    
     </navigation-rule>
     
     <application>		

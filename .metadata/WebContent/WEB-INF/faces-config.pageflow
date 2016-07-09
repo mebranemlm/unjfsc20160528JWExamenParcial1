@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14644507182960" configfile="/MERCEDES_BRANDAN/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="754" id="pf14644508161061" outlinks="pf146445086459710 pf146445090082715 pf146445092837317 pf146445095147219" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="754" id="pf14644508161061" outlinks="pf146445086459710 pf146445090082715 pf146445092837317 pf146445095147219 pf14680650230510" path="*"/>
   <nodes xsi:type="pageflow:PFPage" name="xhtml/transporte.xhtml" x="338" y="178" id="pf146445086459712" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf146445086459710" path="/xhtml/transporte.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="principal.xhtml" x="338" y="562" id="pf146445090082816" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf146445090082715" path="/principal.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="xhtml/transporte_eliminar.xhtml" x="338" y="946" id="pf146445092837318" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf146445092837317" path="/xhtml/transporte_eliminar.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="xhtml/transporte_buscar.xhtml" x="338" y="1330" id="pf146445095147220" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf146445095147219" path="/xhtml/transporte_buscar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="xhtml/transporte_buscar.xhtml" x="338" y="1330" id="pf146445095147220" referenceLink="//@navigationRule.0/@navigationCase.4/@toViewId|" inlinks="pf146445095147219" path="/xhtml/transporte_buscar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="xhtml/test.xhtml" id="pf14680650230511" referenceLink="//@navigationRule.0/@navigationCase.4/@toViewId|" inlinks="pf14680650230510" path="/xhtml/test.xhtml"/>
   <links id="pf146445086459710" target="pf146445086459712" source="pf14644508161061" outcome="TRANSPORTE"/>
   <links id="pf146445090082715" target="pf146445090082816" source="pf14644508161061" outcome="PRINCIPAL"/>
   <links id="pf146445092837317" target="pf146445092837318" source="pf14644508161061" outcome="TRANSPORTE_ELIMINAR"/>
   <links id="pf146445095147219" target="pf146445095147220" source="pf14644508161061" outcome="TRANSPORTE_BUSCAR"/>
+  <links id="pf14680650230510" target="pf14680650230511" source="pf14644508161061" outcome="TEST"/>
 </pageflow:Pageflow>

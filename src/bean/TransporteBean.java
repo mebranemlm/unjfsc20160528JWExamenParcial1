@@ -48,6 +48,12 @@ public class TransporteBean {
 	//JRS
 	private int filaseleccionada;
 	
+	public String valorRadio="1";
+	
+	public void select_radio(){
+		System.out.println("Radio:"+valorRadio);
+	}
+	
 	public int getFilaseleccionada() {
 		return filaseleccionada;
 	}
@@ -203,6 +209,14 @@ public class TransporteBean {
 	}
 	
 	
+
+	public String getValorRadio() {
+		return valorRadio;
+	}
+
+	public void setValorRadio(String valorRadio) {
+		this.valorRadio = valorRadio;
+	}
 
 	public int getIdTransporte() {
 		return idTransporte;
