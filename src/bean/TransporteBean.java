@@ -187,6 +187,18 @@ public class TransporteBean {
 		setModelo(mo);
 	}
 	
+	public void validaDescTransporte(FacesContext arg0,UIComponent arg1,Object arg2) throws Exception	
+	{
+		if(((String)arg2).length()<1)
+		{
+			throw new ValidatorException(new FacesMessage("Debe ingresar un valor"));			
+		}
+		else
+		{
+			return;
+		}
+	}
+	
 	
 
 	public int getIdTransporte() {

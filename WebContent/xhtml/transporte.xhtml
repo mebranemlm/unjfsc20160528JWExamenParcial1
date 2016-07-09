@@ -41,7 +41,7 @@
 	<tr>
 		<th>Desc Transporte</th>
 		<td>
-			<h:inputText value="#{TransporteBean.descTransporte}"  ></h:inputText>
+			<h:inputText value="#{TransporteBean.descTransporte}"  id="descTransporte" validator="#{TransporteBean.validaDescTransporte}" ></h:inputText>
 		</td>
 	</tr>
 	<tr>
@@ -84,12 +84,17 @@
 	</tr>
 	<tr align="center">
 		<td colspan="2">
-			<p:commandButton value="Agregar"
+			<p:commandButton update="@form" value="Agregar"
 				actionListener="#{TransporteBean.create}" action="PRINCIPAL"
 				rendered="#{!TransporteBean.sw_edit}" icon="ui-icon-disk" />
-			<p:commandButton value="Modificar"
+			<p:commandButton update="@form" value="Modificar"
 				actionListener="#{TransporteBean.update}" action="PRINCIPAL"
 				rendered="#{TransporteBean.sw_edit}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<p:messages for="descTransporte"></p:messages>
 		</td>
 	</tr>
 </table>
